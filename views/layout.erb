@@ -14,6 +14,7 @@
   <p>Powered by <a href="http://pittlandia.net">PiTTlândia</a>. Source-code up for grabs at
     <a href="https://github.com/rtopitt/quick_tunes">GitHub</a>.</p>
   <script type="text/javascript">
+    $('#search_artist').focus();
     $('#search_form').submit(function(){
       $('input[type=submit]', this).attr('value', 'Searching...');
       $('input[type=submit]', this).attr('disabled', 'disabled');
