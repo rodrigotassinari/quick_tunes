@@ -34,6 +34,9 @@ get '/' do
       video = youtube_search.videos.first
       @results << {:artist => @artist, :track => track, :video => video}
     end
+    headers 'Cache-Control' => 'public, max-age=86400' # caches results for 24 hours (using Varnish, see http://docs.heroku.com/http-caching )
+  else
+    headers 'Cache-Control' => 'no-cache' # no cache
   end
   erb :index
 end
