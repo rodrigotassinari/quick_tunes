@@ -1,0 +1,20 @@
+<div id="search_box">
+  <form action="/" id="search">
+    <label for="artist">Artist:</label>
+    <input type="text" name="artist" id="artist" value="<%=	params[:artist] %>"/>
+    <input type="submit" value="Search">
+  </form>
+</div>
+
+<% unless @artist == '' %>
+  <div id="results_box">
+    <p>Top 5 tracks from <a href="http://www.last.fm/music/<%=	@artist %>"><%=	@artist %></a> according to <a href="http://last.fm">Last.fm</a>:</p>
+    <ul>
+      <% @tracks.each do |track| %>
+        <li>
+          <a href="http://www.youtube.com/results?search_query=<%= CGI::escape(track).to_s %>&aq=f"><%= track %></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
