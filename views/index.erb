@@ -1,20 +1,27 @@
 <div id="search_box">
-  <form action="/" id="search">
-    <label for="artist">Artist:</label>
-    <input type="text" name="artist" id="artist" value="<%=	params[:artist] %>"/>
-    <input type="submit" value="Search">
+  <form action="/" id="search_form">
+    <label for="search_artist">Artist or band:</label>
+    <input type="text" name="artist" id="search_artist" value="<%=	params[:artist] %>"/>
+    <input type="submit" value="Search" id="search_form_submit">
   </form>
 </div>
 
 <% unless @artist == '' %>
   <div id="results_box">
-    <p>Top 5 tracks from <a href="http://www.last.fm/music/<%=	@artist %>"><%=	@artist %></a> according to <a href="http://last.fm">Last.fm</a>:</p>
-    <ul>
-      <% @tracks.each do |track| %>
+    <p>Top 5 tracks from <a href="http://www.last.fm/music/<%= @artist %>"><%= @artist %></a> according to <a href="http://last.fm">Last.fm</a>:</p>
+    <ol>
+      <% @results.each do |result| %>
+
         <li>
-          <a href="http://www.youtube.com/results?search_query=<%= CGI::escape(track).to_s %>&aq=f"><%= track %></a>
+          <p><%= result[:track] %></p>
+          <% if result[:video].nil? %>
+            <p>No video found.</p>
+          <% else %>
+            <p><%= result[:video].embed_html %></p>
+          <% end %>
+          <p><a href="http://www.youtube.com/results?search_query=<%= CGI::escape(result[:track]).to_s.downcase %>&aq=f">other videos</a></p>
         </li>
       <% end %>
-    </ul>
+    </ol>
   </div>
 <% end %>

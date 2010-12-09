@@ -11,6 +11,7 @@ require 'open-uri'
 require 'rubygems'
 require 'sinatra'
 require 'crack/xml'
+require 'youtube_g'
 
 LASTFM_API_KEY = "2eda7af022a1e005cb1d8f3b7583b612"
 
@@ -34,8 +35,17 @@ end
 get '/' do
   @artist = params[:artist].to_s.downcase
   unless @artist == ''
+    @results = []
     hash = top_tracks_hash(top_tracks_xml(@artist))
     @tracks = top_tracks(hash, 5)
+    @tracks.each do |track|
+      youtube_search = YouTubeG::Client.new.videos_by(:query => track.to_s.downcase, :page => 1, :per_page => 1)
+      video = youtube_search.videos.first
+      @results << {:artist => @artist, :track => track, :video => video}
+    end
+    headers 'Cache-Control' => 'public, max-age=86400' # caches results for 24 hours (using Varnish, see http://docs.heroku.com/http-caching )
+  else
+    headers 'Cache-Control' => 'no-cache' # no cache
   end
   erb :index
 end

@@ -1,0 +1,2 @@
+Small sinatra web application that fetches the 5 most popular tracks for a given artist (according to Last.fm) and displays Youtube videos of each track.
+
