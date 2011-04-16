@@ -1,4 +1,4 @@
-require 'quick_tunes'
+require './quick_tunes'
 
 require 'rack/reloader'
 use Rack::Reloader, 0 if development?
