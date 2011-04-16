@@ -1,32 +1,34 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    builder (3.0.0)
     configuration (1.2.0)
     crack (0.1.8)
-    heroku (1.13.7)
-      json_pure (>= 1.2.0, < 1.5.0)
+    heroku (1.20.1)
       launchy (~> 0.3.2)
       rest-client (>= 1.4.0, < 1.7.0)
-    json_pure (1.4.6)
     launchy (0.3.7)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
     mime-types (1.16)
+    oauth (0.4.4)
     rack (1.2.1)
     rake (0.8.7)
     rest-client (1.6.1)
       mime-types (>= 1.16)
-    sinatra (1.1.0)
+    sinatra (1.2.3)
       rack (~> 1.1)
-      tilt (~> 1.1)
-    tilt (1.1)
-    youtube-g (0.5.0)
+      tilt (>= 1.2.2, < 2.0)
+    tilt (1.2.2)
+    youtube_it (1.4.2)
+      builder
+      oauth (>= 0.4.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  crack
-  heroku
-  sinatra
-  youtube-g
+  crack (= 0.1.8)
+  heroku (= 1.20.1)
+  sinatra (= 1.2.3)
+  youtube_it (= 1.4.2)
