@@ -4,6 +4,7 @@ GEM
     awesome_print (1.1.0)
     coderay (1.0.9)
     crack (0.3.2)
+    dalli (2.6.2)
     dotenv (0.7.0)
     foreman (0.63.0)
       dotenv (>= 0.7)
@@ -17,6 +18,8 @@ GEM
     pry-nav (0.2.3)
       pry (~> 0.9.10)
     rack (1.5.2)
+    rack-cache (1.2)
+      rack (>= 0.4)
     rack-protection (1.5.0)
       rack
     raindrops (0.11.0)
@@ -38,8 +41,10 @@ PLATFORMS
 DEPENDENCIES
   awesome_print (~> 1.1)
   crack (= 0.3.2)
+  dalli (= 2.6.2)
   foreman (~> 0.63)
   pry (~> 0.9)
   pry-nav (~> 0.2)
+  rack-cache (= 1.2)
   sinatra (= 1.4.2)
   unicorn (= 4.6.2)

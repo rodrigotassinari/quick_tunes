@@ -11,6 +11,7 @@ class Video
   end
 
   def embed_html
+    return ''
     <<-EOF
       <object width="425" height="350">
         <param name="movie" value="http://www.youtube.com/v/#{@youtube_id}&feature=youtube_gdata_player"></param>
