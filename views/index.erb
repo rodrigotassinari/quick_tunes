@@ -8,15 +8,15 @@
 
 <% if @artist.songs.any? %>
   <div id="results_box">
-    <p>Top 5 tracks from <a href="<%= @artist.last_fm_page %>"><%= @artist.name %></a> according to <a href="http://last.fm">Last.fm</a>:</p>
+    <p>Top 5 tracks from <a href="<%= @artist.last_fm_url %>"><%= @artist.name %></a> according to <a href="http://last.fm">Last.fm</a>:</p>
     <ol>
       <% @artist.songs.each do |song| %>
         <li>
-          <p><%= @artist.name %> - <%= song.title %></p>
+          <p><a href="<%= song.last_fm_url %>" target="_blank"><%= @artist.name %> - <%= song.name %></a></p>
           <p>
             <%= song.video.embed_html %>
           </p>
-          <p><a href="<%= song.video.search_more_url %>">other videos</a></p>
+          <p><a href="<%= song.video.search_more_url %>" target="_blank">other videos</a></p>
         </li>
       <% end %>
     </ol>

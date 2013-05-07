@@ -1,18 +1,13 @@
 require 'cgi'
 class Video
 
-  def initialize(artist, title)
-    @artist = artist
-    @title = title
-    @youtube_id = 'foobar'
+  def initialize(search_query)
+    @search_query = CGI::escape(search_query)
+    @youtube_id = 'foobar' # FIXME
   end
 
   def fetch!
     # TODO youtube search
-  end
-
-  def search_query
-    CGI::escape("#{@artist} - #{@title}")
   end
 
   def embed_html
@@ -26,7 +21,7 @@ class Video
   end
 
   def search_more_url
-    "http://www.youtube.com/results?aq=f&search_query=#{search_query}"
+    "http://www.youtube.com/results?aq=f&search_query=#{@search_query}"
   end
 
 end
