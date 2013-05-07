@@ -1,3 +1,4 @@
+require 'cgi'
 class Artist
 
   attr_reader :name, :songs
@@ -8,8 +9,17 @@ class Artist
   end
 
   def fetch_songs!
-    return if self.name.nil? || self.name.to_s.strip == ''
-    @songs = Song.from_artist(self.name, 5)
+    return if no_name?
+    @songs = Song.from_artist(name, 5)
+  end
+
+  def no_name?
+    name.nil? || name.to_s.strip == ''
+  end
+
+  def last_fm_page
+    return if no_name?
+    "http://www.last.fm/music/#{CGI::escape(name)}"
   end
 
 end

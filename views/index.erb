@@ -1,1 +1,24 @@
-Opa
+<div id="search_box">
+  <form action="/" id="search_form">
+    <label for="search_artist">Artist or band:</label>
+    <input type="text" name="artist" id="search_artist" value="<%= @artist.name %>"/>
+    <input type="submit" value="Search" id="search_form_submit">
+  </form>
+</div>
+
+<% if @artist.songs.any? %>
+  <div id="results_box">
+    <p>Top 5 tracks from <a href="<%= @artist.last_fm_page %>"><%= @artist.name %></a> according to <a href="http://last.fm">Last.fm</a>:</p>
+    <ol>
+      <% @artist.songs.each do |song| %>
+        <li>
+          <p><%= @artist.name %> - <%= song.title %></p>
+          <p>
+            <%= song.video.embed_html %>
+          </p>
+          <p><a href="<%= song.video.search_more_url %>">other videos</a></p>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+<% end %>

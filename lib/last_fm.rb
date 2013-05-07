@@ -11,14 +11,14 @@ module LastFm
       @query = query.to_s.downcase
     end
 
-    def top_tracks(limit=5)
-      fetch && parse
+    def top_tracks(limit=5, use_cache=true)
+      fetch(use_cache) && parse
       @info['lfm']['toptracks']['track'][0..limit-1]
     end
 
     private
 
-    def fetch
+    def fetch(use_cache=false)
       @xml = open("http://ws.audioscrobbler.com/2.0/?api_key=#{LASTFM_API_KEY}&method=artist.gettoptracks&artist=#{CGI::escape(@query)}")
       true
     end
